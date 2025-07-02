@@ -1,23 +1,197 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2487">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 17.0px Times; color: #eae96f; -webkit-text-stroke: #eae96f}
-    span.s1 {font-kerning: none}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Car Guys NYC - Luxury Car Rentals, Sales & Services</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
-<p class="p1"><span class="s1">&lt;html&gt;</span></p>
-<p class="p1"><span class="s1">&lt;body&gt;</span></p>
-<p class="p1"><span class="s1">&lt;h1&gt;Hello World&lt;/h1&gt;</span></p>
-<p class="p1"><span class="s1">&lt;p&gt;I'm hosted with GitHub Pages.&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/body&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="images/car_guys_logo.svg" alt="The Car Guys NYC" class="logo">
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="rent.html" class="nav-link">Rent a Car</a>
+                <a href="buy.html" class="nav-link">Buy a Car</a>
+                <a href="services.html" class="nav-link">Services</a>
+                <a href="request.html" class="nav-link">Request a Car</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">ALL YOUR AUTOMOTIVE NEEDS UNDER ONE ROOF</h1>
+            <p class="hero-subtitle">Customize. Service. Repair. Detail. Exotic car rentals.</p>
+            <p class="hero-tagline">The Car Guys Motorclub: Your one-stop-shop</p>
+            <div class="hero-buttons">
+                <a href="rent.html" class="btn btn-primary">
+                    <i class="fas fa-car"></i>
+                    Rent a Car
+                </a>
+                <a href="buy.html" class="btn btn-secondary">
+                    <i class="fas fa-shopping-cart"></i>
+                    Buy a Car
+                </a>
+                <a href="services.html" class="btn btn-tertiary">
+                    <i class="fas fa-wrench"></i>
+                    Book Service
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">23</div>
+                    <div class="stat-label">Years of Experience</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">Satisfied Customers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">17</div>
+                    <div class="stat-label">Expert Staff Members</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50</div>
+                    <div class="stat-label">Car Rental Fleet</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Preview -->
+    <section class="services-preview">
+        <div class="container">
+            <h2 class="section-title">Premium Automotive Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-car-side"></i>
+                    </div>
+                    <h3>Concierge Service</h3>
+                    <p>White-glove automotive care with personalized attention to every detail of your vehicle's needs.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <h3>Financing Options</h3>
+                    <p>Flexible financing solutions to help you get behind the wheel of your dream car today.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Expert Providers</h3>
+                    <p>Certified technicians with extensive experience in luxury and exotic vehicle maintenance.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Customized Solutions</h3>
+                    <p>Tailored automotive solutions designed specifically for your vehicle type and condition.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Preview -->
+    <section class="about-preview">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>All-inclusive auto service for over 20 years</h2>
+                    <p>At The Car Guys, we've been providing comprehensive car services for two decades. From routine servicing to major repairs and collision work, our expert team has the experience and knowledge to keep your vehicle running smoothly.</p>
+                    <p>We don't stop there - we also offer detailing and car rental services to meet all your auto needs. Our commitment to quality and customer satisfaction has kept us in business for 20 years, and we look forward to serving you.</p>
+                    <a href="about.html" class="btn btn-outline">Learn More About Us</a>
+                </div>
+                <div class="about-image">
+                    <img src="images/luxury_showroom.svg" alt="Luxury Car Showroom">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Experience Premium Automotive Care?</h2>
+                <p>Contact us today to schedule your service or browse our luxury fleet</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="btn btn-primary">Get Started</a>
+                    <a href="tel:+17187261777" class="btn btn-outline">Call (718) 726-1777</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="images/car_guys_logo.svg" alt="The Car Guys NYC" class="logo">
+                    </div>
+                    <p>Your premier destination for luxury car rentals, sales, and automotive services in NYC.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="rent.html">Rent a Car</a></li>
+                        <li><a href="buy.html">Buy a Car</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="services.html#collision">Collision Repair</a></li>
+                        <li><a href="services.html#detailing">Detailing Services</a></li>
+                        <li><a href="services.html#ceramic">Ceramic Coating</a></li>
+                        <li><a href="services.html#tinting">Window Tinting</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> 32-13 57TH ST, WOODSIDE, NY 11377</p>
+                        <p><i class="fas fa-phone"></i> (718) 726-1777</p>
+                        <p><i class="fas fa-envelope"></i> Service@thecarguysnyc.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 The Car Guys Motorgroup LLC. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
+

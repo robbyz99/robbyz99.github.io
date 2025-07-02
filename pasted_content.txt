@@ -1,0 +1,198 @@
+You are a senior UX/UI designer generating high-fidelity Figma mockups for The Car Guys NYC (https://www.thecarguysnyc.com).
+
+🎯 Objective
+✅ Overhaul the website to be clean, premium, and easy to navigate for rentals, car sales, and services.
+✅ Use a black-and-gold color palette for a premium feel.
+✅ Ensure mobile-first responsiveness with high conversion flows.
+✅ Integrate RentSyst for rentals while maintaining visual consistency.
+✅ Use pictures, logos, and branding elements currently available on the website to ensure continuity and brand recognition.
+
+🖼️ Use Existing Media
+⚠️ Use the pictures and logos from the current website:
+
+Vehicle photos used in fleet and sales
+
+Logo and wordmark
+
+Service imagery
+
+Any testimonial photos if applicable
+
+Resize, crop, or clean them in Figma as needed for consistency, but do not replace with unrelated stock photography unless the existing image quality is too low, in which case propose replacements explicitly.
+
+🗂️ Pages to Design
+1️⃣ Home
+Hero section with existing NYC + fleet imagery.
+
+Large “Rent a Car,” “Buy a Car,” “Book Service” CTA buttons.
+
+Showcase:
+
+Concierge service
+
+Financing options
+
+Google reviews carousel using logos or screenshots if applicable.
+
+Footer with quick navigation and social/contact links.
+
+2️⃣ Rent a Car
+✅ Grid/card layout for rental fleet:
+
+Vehicle image (existing)
+
+Name, daily rate
+
+“View Details” button
+✅ Car details page:
+
+Description
+
+Weekly/monthly rates
+
+Date picker
+
+“Reserve Now” CTA
+✅ Booking flow:
+
+Collect name, phone, email, rental dates
+
+Upload license (front/back) and insurance
+
+$1 deposit collection pending approval, then charge/refund workflow
+✅ Integrate RentSyst calendar and availability visually.
+
+3️⃣ Buy a Car
+✅ Grid/list of used cars:
+
+Image (existing), year, make, model, mileage, price
+✅ Car details page with description
+✅ “Request Test Drive” CTA
+
+4️⃣ Services
+✅ Retain all services listed on:
+https://www.thecarguysnyc.com/services
+
+List:
+
+Collision Repair
+
+Mechanical Services
+
+Wheel and Tire Services
+
+Detailing Services
+
+Lease Return Inspections
+
+Vehicle Diagnostics
+
+Paint Protection Film (PPF) & Ceramic Coating
+
+✅ For each:
+
+Existing relevant image
+
+Short description
+
+“Book Service” button leading to intake form
+
+5️⃣ Request a Car
+Allow users to request unlisted vehicles:
+
+Desired make/model/year
+
+Name, phone, email, preferred rental dates
+
+“Submit Request” CTA
+
+6️⃣ About Us
+Story of The Car Guys NYC
+
+Team photos (existing) if available
+
+Emphasis on NYC expertise, trust, and concierge-level service
+
+7️⃣ Contact
+Google Maps embed
+
+Contact form:
+
+Name, email, phone, message
+
+Clickable phone and email actions on mobile
+
+🖌️ Design System
+✅ Colors:
+
+Black (#000000)
+
+Gold (#D4AF37 or brand-aligned gold)
+
+White/light gray backgrounds for clarity
+
+✅ Typography:
+
+Modern sans-serif (Inter, Montserrat, or similar)
+
+✅ Buttons:
+
+Rounded corners (8-12px)
+
+Gold accents with hover micro-interactions
+
+✅ Components:
+
+Date picker
+
+File upload with preview
+
+Responsive cards
+
+Modals for forms
+
+✅ Footer:
+
+Quick navigation
+
+Social media icons
+
+Contact information
+
+📈 SEO & Tracking Considerations
+Semantic HTML-ready structure for developer handoff
+
+Accessibility considerations
+
+Space for embedding Google Analytics 4 and Facebook Pixel
+
+Cookie-based user tracking for retargeting ads
+
+🛠️ Functional Notes
+✅ Ensure clean, frictionless booking flows for rentals
+✅ Use existing car images and service images for consistency
+✅ Integrate with RentSyst while maintaining styling
+✅ Mobile-first design with clear CTAs
+✅ Sticky “Book Now” button on mobile
+
+Deliverables
+✅ High-fidelity Figma mockups for:
+
+Home
+
+Rent a Car (fleet page + booking flow)
+
+Buy a Car
+
+Services
+
+Request a Car
+
+About Us
+
+Contact
+
+✅ Mobile and desktop views
+✅ A style guide frame inside Figma for consistency
+✅ Organized, component-based layout for developer-friendly handoff
+
