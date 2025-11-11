@@ -3,195 +3,703 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Car Guys NYC - Luxury Car Rentals, Sales & Services</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Advance TMS QEEG Analysis & Comparator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+    </script>
+    <style>
+        :root {
+            --brand-primary: #00bcd4;
+            --brand-secondary: #3f51b5;
+            --brand-dark: #0b1026;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at top, rgba(0, 188, 212, 0.08), transparent 55%),
+                radial-gradient(circle at bottom, rgba(63, 81, 181, 0.16), transparent 45%) #05060f;
+            color: #0f172a;
+        }
+
+        .brand-card {
+            background: rgba(15, 23, 42, 0.75);
+            border: 1px solid rgba(148, 163, 184, 0.25);
+            box-shadow: 0 20px 45px rgba(15, 23, 42, 0.25);
+            backdrop-filter: blur(20px);
+        }
+
+        .brand-gradient {
+            background: linear-gradient(140deg, rgba(0, 188, 212, 0.9) 0%, rgba(63, 81, 181, 0.9) 40%, rgba(63, 81, 181, 0.85) 100%);
+        }
+
+        .brand-heading {
+            background: linear-gradient(120deg, #63e0ff 0%, #6f7dff 45%, #8ea2ff 75%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        #canvas-wrapper {
+            position: relative;
+            background-color: #f3f4f6;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            border: 1px solid #e5e7eb;
+        }
+
+        #canvas-base {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+        }
+
+        #overlay-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
+
+        #overlay-container canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.5;
+            mix-blend-mode: multiply;
+        }
+
+        .loader {
+            border: 4px solid rgba(148, 163, 184, 0.25);
+            border-top: 4px solid #5ce9ff;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            animation: spin 1s linear infinite;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -24px;
+            margin-top: -24px;
+            z-index: 10;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
 </head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <img src="images/car_guys_logo.svg" alt="The Car Guys NYC" class="logo">
-            </div>
-            <div class="nav-menu" id="nav-menu">
-                <a href="#home" class="nav-link">Home</a>
-                <a href="rent.html" class="nav-link">Rent a Car</a>
-                <a href="buy.html" class="nav-link">Buy a Car</a>
-                <a href="services.html" class="nav-link">Services</a>
-                <a href="request.html" class="nav-link">Request a Car</a>
-                <a href="about.html" class="nav-link">About Us</a>
-                <a href="contact.html" class="nav-link">Contact</a>
-            </div>
-            <div class="nav-toggle" id="nav-toggle">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1 class="hero-title">ALL YOUR AUTOMOTIVE NEEDS UNDER ONE ROOF</h1>
-            <p class="hero-subtitle">Customize. Service. Repair. Detail. Exotic car rentals.</p>
-            <p class="hero-tagline">The Car Guys Motorclub: Your one-stop-shop</p>
-            <div class="hero-buttons">
-                <a href="rent.html" class="btn btn-primary">
-                    <i class="fas fa-car"></i>
-                    Rent a Car
-                </a>
-                <a href="buy.html" class="btn btn-secondary">
-                    <i class="fas fa-shopping-cart"></i>
-                    Buy a Car
-                </a>
-                <a href="services.html" class="btn btn-tertiary">
-                    <i class="fas fa-wrench"></i>
-                    Book Service
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="stats">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-number">23</div>
-                    <div class="stat-label">Years of Experience</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">1000+</div>
-                    <div class="stat-label">Satisfied Customers</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">17</div>
-                    <div class="stat-label">Expert Staff Members</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">50</div>
-                    <div class="stat-label">Car Rental Fleet</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Preview -->
-    <section class="services-preview">
-        <div class="container">
-            <h2 class="section-title">Premium Automotive Services</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-car-side"></i>
+<body class="bg-gray-100 p-4 md:p-8">
+    <div class="max-w-6xl mx-auto brand-card p-6 md:p-8 rounded-2xl space-y-8 text-slate-100">
+        <header class="border-b border-slate-700 pb-6">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+                <div class="flex items-center gap-4">
+                    <div class="flex-shrink-0">
+                        <div class="bg-slate-950/50 border border-slate-700 rounded-xl p-3">
+                            <img src="./Advance-TMS-logo.jpg" alt="Advance TMS logo" class="h-12 w-auto object-contain">
+                        </div>
                     </div>
-                    <h3>Concierge Service</h3>
-                    <p>White-glove automotive care with personalized attention to every detail of your vehicle's needs.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-credit-card"></i>
-                    </div>
-                    <h3>Financing Options</h3>
-                    <p>Flexible financing solutions to help you get behind the wheel of your dream car today.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h3>Expert Providers</h3>
-                    <p>Certified technicians with extensive experience in luxury and exotic vehicle maintenance.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-tools"></i>
-                    </div>
-                    <h3>Customized Solutions</h3>
-                    <p>Tailored automotive solutions designed specifically for your vehicle type and condition.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Preview -->
-    <section class="about-preview">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2>All-inclusive auto service for over 20 years</h2>
-                    <p>At The Car Guys, we've been providing comprehensive car services for two decades. From routine servicing to major repairs and collision work, our expert team has the experience and knowledge to keep your vehicle running smoothly.</p>
-                    <p>We don't stop there - we also offer detailing and car rental services to meet all your auto needs. Our commitment to quality and customer satisfaction has kept us in business for 20 years, and we look forward to serving you.</p>
-                    <a href="about.html" class="btn btn-outline">Learn More About Us</a>
-                </div>
-                <div class="about-image">
-                    <img src="images/luxury_showroom.svg" alt="Luxury Car Showroom">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta">
-        <div class="container">
-            <div class="cta-content">
-                <h2>Ready to Experience Premium Automotive Care?</h2>
-                <p>Contact us today to schedule your service or browse our luxury fleet</p>
-                <div class="cta-buttons">
-                    <a href="contact.html" class="btn btn-primary">Get Started</a>
-                    <a href="tel:+17187261777" class="btn btn-outline">Call (718) 726-1777</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="footer-logo">
-                        <img src="images/car_guys_logo.svg" alt="The Car Guys NYC" class="logo">
-                    </div>
-                    <p>Your premier destination for luxury car rentals, sales, and automotive services in NYC.</p>
-                </div>
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="rent.html">Rent a Car</a></li>
-                        <li><a href="buy.html">Buy a Car</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Services</h3>
-                    <ul>
-                        <li><a href="services.html#collision">Collision Repair</a></li>
-                        <li><a href="services.html#detailing">Detailing Services</a></li>
-                        <li><a href="services.html#ceramic">Ceramic Coating</a></li>
-                        <li><a href="services.html#tinting">Window Tinting</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Contact Info</h3>
-                    <div class="contact-info">
-                        <p><i class="fas fa-map-marker-alt"></i> 32-13 57TH ST, WOODSIDE, NY 11377</p>
-                        <p><i class="fas fa-phone"></i> (718) 726-1777</p>
-                        <p><i class="fas fa-envelope"></i> Service@thecarguysnyc.com</p>
+                    <div>
+                        <h1 class="text-3xl md:text-4xl font-bold brand-heading">Advance TMS QEEG Analysis & Comparator</h1>
+                        <p class="text-slate-200/80 text-base md:text-lg mt-1">Dr. Cabisudo's Personal Brain Mapping Report</p>
                     </div>
                 </div>
+                <div class="text-sm text-slate-300/80 leading-relaxed max-w-sm">
+                    <span class="uppercase tracking-[0.2em] text-xs text-teal-200/80">Precision Neuroanalytics</span>
+                    <p class="mt-2">Transform raw EEG PDFs into actionable overlays that illuminate neurological change from baseline to most recent session.</p>
+                </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 The Car Guys Motorgroup LLC. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+            <p class="text-slate-300/90 mt-6 text-sm leading-relaxed">
+                Load up to 6 chart versions from a single source PDF at a time. Tag each upload so the dashboard can sort
+                from oldest (tag 1) to newest and automatically overlay the most recent chart on top of the original for a
+                quick visual comparison.
+            </p>
+        </header>
 
-    <script src="script.js"></script>
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-slate-900/60 border border-slate-700 p-5 rounded-xl space-y-4">
+                <div>
+                    <label for="pdf-add" class="block text-sm font-semibold text-slate-200 uppercase tracking-wide mb-2">
+                        Upload EEG Report (PDF)
+                    </label>
+                    <input
+                        type="file"
+                        id="pdf-add"
+                        accept="application/pdf"
+                        class="block w-full text-sm text-slate-100 bg-slate-950/60 border border-slate-700 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-400/80 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-cyan-500/10 file:text-cyan-200 hover:file:bg-cyan-500/20"
+                        disabled
+                    >
+                </div>
+                <div>
+                    <label for="version-tag" class="block text-sm font-semibold text-slate-200 uppercase tracking-wide mb-2">
+                        Session Tag (1 = Baseline, higher = Newer)
+                    </label>
+                    <input
+                        type="number"
+                        id="version-tag"
+                        min="1"
+                        step="1"
+                        placeholder="Enter session order"
+                        class="block w-full rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-500 focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-400 disabled:bg-slate-900 disabled:text-slate-600"
+                        disabled
+                    >
+                </div>
+                <p id="pdf-add-message" class="text-xs text-slate-400">
+                    Loading PDF.js...
+                </p>
+            </div>
+
+            <div class="bg-slate-900/60 border border-slate-700 p-5 rounded-xl min-h-[120px]">
+                <div class="flex justify-between items-center mb-3">
+                    <h2 class="text-sm font-semibold text-slate-200 uppercase tracking-wide">Session Library</h2>
+                    <span class="text-xs font-medium text-cyan-200/80">Overlay</span>
+                </div>
+                <div id="pdf-list" class="space-y-2">
+                    <p class="text-sm text-slate-400">No PDFs loaded.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="flex items-center bg-slate-900/60 border border-slate-700 px-4 py-5 rounded-xl">
+            <label for="opacity-slider" class="text-sm font-semibold text-slate-200 uppercase tracking-wide whitespace-nowrap mr-4">
+                Overlay Opacity
+            </label>
+            <input type="range" id="opacity-slider" min="0" max="1" step="0.01" value="0.5" class="w-full accent-cyan-400">
+        </section>
+
+        <section>
+            <h2 class="text-lg font-semibold text-cyan-200 uppercase tracking-wide mb-3">Overlay Viewer</h2>
+            <div id="canvas-wrapper" class="w-full min-h-[300px] flex items-center justify-center bg-slate-950/60 border border-slate-700 rounded-xl">
+                <canvas id="canvas-base"></canvas>
+                <div id="overlay-container"></div>
+                <div id="loader" class="loader hidden"></div>
+                <div id="placeholder" class="text-slate-400 text-sm">
+                    Please add a PDF to begin.
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-lg font-semibold text-cyan-200 uppercase tracking-wide mb-3">Side-by-Side Comparison</h2>
+            <p class="text-sm text-slate-300/80 mb-4">
+                Each version renders independently so you can review EEG details without overlays. Resize the window to re-render at the current width.
+            </p>
+            <div id="comparison-container" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6"></div>
+        </section>
+    </div>
+
+    <script>
+        const PAGE_TO_RENDER = 1;
+        const MAX_DOCS = 6;
+        const OVERLAY_COLORS = [
+            [255, 0, 0],
+            [0, 150, 0],
+            [0, 0, 255],
+            [255, 128, 0],
+            [128, 0, 128]
+        ];
+
+        let pdfDocuments = [];
+        let isRendering = false;
+        let scale = 1.5;
+        let currentPixelRatio = window.devicePixelRatio || 1;
+
+        const pdfAddInput = document.getElementById('pdf-add');
+        const pdfAddMessage = document.getElementById('pdf-add-message');
+        const versionTagInput = document.getElementById('version-tag');
+        const pdfListDiv = document.getElementById('pdf-list');
+        const opacitySlider = document.getElementById('opacity-slider');
+        const canvasWrapper = document.getElementById('canvas-wrapper');
+        const canvasBase = document.getElementById('canvas-base');
+        const overlayContainer = document.getElementById('overlay-container');
+        const loader = document.getElementById('loader');
+        const placeholder = document.getElementById('placeholder');
+        const comparisonContainer = document.getElementById('comparison-container');
+
+        pdfAddInput.addEventListener('change', handleFileUpload);
+        pdfListDiv.addEventListener('change', handleListToggle);
+        opacitySlider.addEventListener('input', updateOverlayOpacity);
+
+        pdfjsLib.GlobalWorkerOptions.workerSrc.onload = () => {
+            pdfAddMessage.textContent = 'Enter a version tag, then choose a PDF to upload.';
+            pdfAddInput.disabled = false;
+            versionTagInput.disabled = false;
+        };
+
+        setTimeout(() => {
+            if (pdfAddInput.disabled) {
+                pdfAddMessage.textContent = 'Enter a version tag, then choose a PDF to upload.';
+                pdfAddInput.disabled = false;
+                versionTagInput.disabled = false;
+            }
+        }, 1000);
+
+        function updateOverlayOpacity(event) {
+            const value = event.target.value;
+            const canvases = overlayContainer.querySelectorAll('canvas');
+            canvases.forEach(canvas => {
+                if (canvas.dataset.visible === 'true') {
+                    canvas.style.opacity = value;
+                }
+            });
+        }
+
+        async function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (!file) {
+                return;
+            }
+
+            if (pdfDocuments.length >= MAX_DOCS) {
+                pdfAddMessage.textContent = `Maximum ${MAX_DOCS} PDFs loaded. Remove a version to add another.`;
+                event.target.value = null;
+                return;
+            }
+
+            const versionValue = parseInt(versionTagInput.value, 10);
+            if (Number.isNaN(versionValue) || versionValue < 1) {
+                pdfAddMessage.textContent = 'Enter a version tag (1 for oldest, higher numbers for newer charts).';
+                event.target.value = null;
+                versionTagInput.focus();
+                return;
+            }
+
+            if (pdfDocuments.some(doc => doc.version === versionValue)) {
+                pdfAddMessage.textContent = `Version tag ${versionValue} already exists. Choose a different number.`;
+                event.target.value = null;
+                versionTagInput.focus();
+                return;
+            }
+
+            placeholder.classList.add('hidden');
+            loader.classList.remove('hidden');
+
+            try {
+                const fileData = await readFileAsArrayBuffer(file);
+                const pdfDoc = await pdfjsLib.getDocument({ data: fileData }).promise;
+                if (pdfDoc.numPages < 1) {
+                    throw new Error('PDF must contain at least one page.');
+                }
+
+                const docInfo = {
+                    id: `pdf-${Date.now()}`,
+                    file,
+                    pdfDoc,
+                    version: versionValue,
+                    color: null,
+                    isVisible: true
+                };
+
+                pdfDocuments.push(docInfo);
+                sortDocuments();
+                assignColorsByOrder();
+                markLatestVisible();
+                updatePdfListUI();
+                await renderAllPdfs();
+                pdfAddMessage.textContent = `Loaded version tag ${versionValue}.`;
+            } catch (error) {
+                console.error('Error loading PDF:', error);
+                pdfAddMessage.textContent = `Error: ${error.message}`;
+                placeholder.classList.remove('hidden');
+            } finally {
+                loader.classList.add('hidden');
+                event.target.value = null;
+                versionTagInput.value = '';
+            }
+        }
+
+        function handleListToggle(event) {
+            const { role, id } = event.target.dataset;
+            if (role === 'toggle') {
+                const doc = pdfDocuments.find(d => d.id === id);
+                if (!doc) {
+                    return;
+                }
+
+                doc.isVisible = event.target.checked;
+                const canvas = document.getElementById(doc.id);
+                if (canvas) {
+                    canvas.dataset.visible = doc.isVisible ? 'true' : 'false';
+                    canvas.style.display = doc.isVisible ? 'block' : 'none';
+                    if (doc.isVisible) {
+                        canvas.style.opacity = opacitySlider.value;
+                    }
+                }
+            }
+        }
+
+        function updatePdfListUI() {
+            pdfListDiv.innerHTML = '';
+
+            sortDocuments();
+            assignColorsByOrder();
+
+            if (pdfDocuments.length === 0) {
+                pdfListDiv.innerHTML = '<p class="text-sm text-slate-400">No PDFs loaded.</p>';
+                pdfAddMessage.textContent = 'Enter a version tag, then choose a PDF to upload.';
+                pdfAddInput.disabled = false;
+                versionTagInput.disabled = false;
+                return;
+            }
+
+            const versionNumbers = pdfDocuments
+                .map(doc => (typeof doc.version === 'number' ? doc.version : null))
+                .filter(value => value !== null);
+            const maxVersion = versionNumbers.length ? Math.max(...versionNumbers) : null;
+
+            pdfDocuments.forEach((doc, index) => {
+                const item = document.createElement('div');
+                item.className = 'flex items-center justify-between text-sm bg-slate-950/60 border border-slate-700 rounded-lg p-3 text-slate-200';
+
+                let descriptor = 'Version';
+                if (index === 0) {
+                    descriptor = 'Oldest';
+                } else if (maxVersion !== null && doc.version === maxVersion) {
+                    descriptor = 'Newest';
+                }
+
+                const label = `${descriptor} (Tag ${doc.version})`;
+                const [r, g, b] = doc.color ?? [128, 128, 128];
+                const colorSwatch = `<span class="w-4 h-4 rounded-full inline-block mr-3 ring-2 ring-slate-800" style="background-color: rgb(${r}, ${g}, ${b});"></span>`;
+
+                let controls = `
+                    <button data-id="${doc.id}" class="text-rose-300 hover:text-rose-200 font-medium text-xs ml-3 transition-colors">
+                        Remove
+                    </button>
+                `;
+
+                if (index > 0) {
+                    const checked = doc.isVisible ? 'checked' : '';
+                    controls = `
+                        <input
+                            type="checkbox"
+                            data-role="toggle"
+                            data-id="${doc.id}"
+                            class="h-5 w-5 accent-cyan-400 border border-slate-500 rounded bg-slate-900/80"
+                            ${checked}
+                        >
+                        ${controls}
+                    `;
+                } else {
+                    controls = `<span class="w-5 h-5 block"></span>${controls}`;
+                }
+
+                item.innerHTML = `
+                    <div class="flex items-center flex-grow">
+                        ${colorSwatch}
+                        <span class="truncate" title="${doc.file.name}">
+                            ${label}: <span class="text-slate-400">${doc.file.name}</span>
+                        </span>
+                    </div>
+                    <div class="flex items-center space-x-3 flex-shrink-0">
+                        ${controls}
+                    </div>
+                `;
+
+                item.querySelector('button').addEventListener('click', removePdf);
+                pdfListDiv.appendChild(item);
+            });
+
+            if (pdfDocuments.length >= MAX_DOCS) {
+                pdfAddInput.disabled = true;
+                versionTagInput.disabled = true;
+                pdfAddMessage.textContent = `Maximum ${MAX_DOCS} PDFs loaded.`;
+            } else {
+                pdfAddInput.disabled = false;
+                versionTagInput.disabled = false;
+                pdfAddMessage.textContent = `Ready for the next upload (currently ${pdfDocuments.length} of ${MAX_DOCS}).`;
+            }
+        }
+
+        async function removePdf(event) {
+            const idToRemove = event.target.dataset.id;
+            pdfDocuments = pdfDocuments.filter(doc => doc.id !== idToRemove);
+
+            sortDocuments();
+            assignColorsByOrder();
+            markLatestVisible();
+
+            if (pdfDocuments.length === 0) {
+                clearCanvases();
+                updatePdfListUI();
+                return;
+            }
+
+            updatePdfListUI();
+            await renderAllPdfs();
+        }
+
+        function sortDocuments() {
+            pdfDocuments.sort((a, b) => {
+                const versionA = typeof a.version === 'number' ? a.version : Number.POSITIVE_INFINITY;
+                const versionB = typeof b.version === 'number' ? b.version : Number.POSITIVE_INFINITY;
+                return versionA - versionB;
+            });
+        }
+
+        function assignColorsByOrder() {
+            pdfDocuments.forEach((doc, index) => {
+                doc.color = index === 0 ? null : OVERLAY_COLORS[(index - 1) % OVERLAY_COLORS.length];
+            });
+        }
+
+        function markLatestVisible() {
+            if (pdfDocuments.length <= 1) {
+                pdfDocuments.forEach(doc => {
+                    doc.isVisible = true;
+                });
+                return;
+            }
+
+            const latestDoc = pdfDocuments.reduce((current, doc) => {
+                if (!doc || typeof doc.version !== 'number') {
+                    return current;
+                }
+                if (!current || doc.version > current.version) {
+                    return doc;
+                }
+                return current;
+            }, null);
+
+            pdfDocuments.forEach((doc, index) => {
+                if (index === 0) {
+                    doc.isVisible = true;
+                    return;
+                }
+
+                if (!latestDoc) {
+                    doc.isVisible = index === pdfDocuments.length - 1;
+                    return;
+                }
+
+                doc.isVisible = doc.id === latestDoc.id;
+            });
+        }
+
+        function clearCanvases() {
+            const baseCtx = canvasBase.getContext('2d');
+            baseCtx.clearRect(0, 0, canvasBase.width, canvasBase.height);
+            overlayContainer.innerHTML = '';
+            comparisonContainer.innerHTML = '';
+            placeholder.classList.remove('hidden');
+            canvasWrapper.style.height = '300px';
+            canvasBase.style.width = '';
+            canvasBase.style.height = '';
+            overlayContainer.style.width = '';
+            overlayContainer.style.height = '';
+        }
+
+        function readFileAsArrayBuffer(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = e => resolve(e.target.result);
+                reader.onerror = e => reject(e.target.error);
+                reader.readAsArrayBuffer(file);
+            });
+        }
+
+        async function renderAllPdfs() {
+            if (pdfDocuments.length === 0) {
+                clearCanvases();
+                return;
+            }
+
+            isRendering = true;
+            loader.classList.remove('hidden');
+
+            sortDocuments();
+            assignColorsByOrder();
+
+            const baseDoc = pdfDocuments[0];
+            const basePage = await baseDoc.pdfDoc.getPage(PAGE_TO_RENDER);
+
+            const baseViewport = basePage.getViewport({ scale: 1 });
+            const wrapperWidth = Math.max(canvasWrapper.clientWidth || canvasWrapper.offsetWidth || 1, 1);
+            scale = wrapperWidth / baseViewport.width;
+            const pixelRatio = window.devicePixelRatio || 1;
+            currentPixelRatio = pixelRatio;
+            const renderViewport = basePage.getViewport({ scale: scale * pixelRatio });
+            const cssWidth = renderViewport.width / pixelRatio;
+            const cssHeight = renderViewport.height / pixelRatio;
+
+            canvasBase.width = renderViewport.width;
+            canvasBase.height = renderViewport.height;
+            canvasBase.style.width = `${cssWidth}px`;
+            canvasBase.style.height = `${cssHeight}px`;
+            canvasWrapper.style.height = `${cssHeight}px`;
+            overlayContainer.style.width = `${cssWidth}px`;
+            overlayContainer.style.height = `${cssHeight}px`;
+
+            const baseContext = canvasBase.getContext('2d');
+            baseContext.setTransform(1, 0, 0, 1, 0, 0);
+            baseContext.clearRect(0, 0, canvasBase.width, canvasBase.height);
+
+            await basePage.render({
+                canvasContext: baseContext,
+                viewport: renderViewport
+            }).promise;
+
+            overlayContainer.innerHTML = '';
+
+            for (const docInfo of pdfDocuments.slice(1)) {
+                await renderOverlay(docInfo, renderViewport, pixelRatio);
+            }
+
+            await renderComparisonPages();
+
+            loader.classList.add('hidden');
+            isRendering = false;
+        }
+
+        async function renderOverlay(docInfo, viewport, pixelRatio) {
+            const page = await docInfo.pdfDoc.getPage(PAGE_TO_RENDER);
+
+            const offscreenCanvas = document.createElement('canvas');
+            offscreenCanvas.width = viewport.width;
+            offscreenCanvas.height = viewport.height;
+            const offscreenContext = offscreenCanvas.getContext('2d');
+
+            await page.render({ canvasContext: offscreenContext, viewport }).promise;
+
+            const imageData = offscreenContext.getImageData(0, 0, viewport.width, viewport.height);
+            const data = imageData.data;
+            const [r, g, b] = docInfo.color;
+
+            const visibleCanvas = document.createElement('canvas');
+            visibleCanvas.width = viewport.width;
+            visibleCanvas.height = viewport.height;
+            visibleCanvas.id = docInfo.id;
+            visibleCanvas.dataset.visible = docInfo.isVisible ? 'true' : 'false';
+            visibleCanvas.style.opacity = opacitySlider.value;
+            visibleCanvas.style.display = docInfo.isVisible ? 'block' : 'none';
+            visibleCanvas.style.width = `${viewport.width / pixelRatio}px`;
+            visibleCanvas.style.height = `${viewport.height / pixelRatio}px`;
+
+            const visibleContext = visibleCanvas.getContext('2d');
+            const newImageData = visibleContext.createImageData(viewport.width, viewport.height);
+            const newData = newImageData.data;
+
+            for (let i = 0; i < data.length; i += 4) {
+                const red = data[i];
+                const green = data[i + 1];
+                const blue = data[i + 2];
+                const alpha = data[i + 3];
+
+                if (red < 150 && green < 150 && blue < 150 && alpha > 100) {
+                    newData[i] = r;
+                    newData[i + 1] = g;
+                    newData[i + 2] = b;
+                    newData[i + 3] = alpha;
+                } else {
+                    newData[i + 3] = 0;
+                }
+            }
+
+            visibleContext.putImageData(newImageData, 0, 0);
+            overlayContainer.appendChild(visibleCanvas);
+        }
+
+        async function renderComparisonPages() {
+            comparisonContainer.innerHTML = '';
+
+            if (pdfDocuments.length === 0) {
+                return;
+            }
+
+            const versionNumbers = pdfDocuments
+                .map(doc => (typeof doc.version === 'number' ? doc.version : null))
+                .filter(value => value !== null);
+            const maxVersion = versionNumbers.length ? Math.max(...versionNumbers) : null;
+
+            for (let index = 0; index < pdfDocuments.length; index += 1) {
+                const docInfo = pdfDocuments[index];
+                const card = document.createElement('div');
+                card.className = 'bg-slate-950/60 border border-slate-700 rounded-xl p-4 flex flex-col space-y-3 text-slate-200';
+
+                let descriptor = 'Version';
+                if (index === 0) {
+                    descriptor = 'Oldest';
+                } else if (maxVersion !== null && docInfo.version === maxVersion) {
+                    descriptor = 'Newest';
+                }
+
+                const [r, g, b] = docInfo.color ?? [128, 128, 128];
+                const label = `${descriptor} (Tag ${docInfo.version})`;
+
+                const header = document.createElement('div');
+                header.className = 'flex items-center justify-between';
+                header.innerHTML = `
+                    <div class="flex items-center">
+                        <span class="w-4 h-4 rounded-full inline-block mr-3 ring-2 ring-slate-800" style="background-color: rgb(${r}, ${g}, ${b});"></span>
+                        <div class="flex flex-col">
+                            <span class="text-sm font-semibold text-slate-100">${label}</span>
+                            <span class="text-xs text-slate-400 truncate" title="${docInfo.file.name}">${docInfo.file.name}</span>
+                        </div>
+                    </div>
+                    <span class="text-xs font-medium text-cyan-200/80">Uploaded Page</span>
+                `;
+
+                const canvas = document.createElement('canvas');
+                canvas.id = `${docInfo.id}-comparison`;
+                canvas.className = 'w-full border border-gray-200 rounded';
+
+                card.appendChild(header);
+                card.appendChild(canvas);
+                comparisonContainer.appendChild(card);
+
+                await renderComparisonCanvas(docInfo, canvas, currentPixelRatio);
+            }
+        }
+
+        async function renderComparisonCanvas(docInfo, canvasElement, pixelRatio) {
+            const page = await docInfo.pdfDoc.getPage(PAGE_TO_RENDER);
+            const baseViewport = page.getViewport({ scale: 1 });
+            const parentWidth = canvasElement.parentElement?.clientWidth || canvasElement.clientWidth || canvasWrapper.clientWidth || baseViewport.width;
+            const cssWidth = Math.max(parentWidth, 1);
+            const effectivePixelRatio = pixelRatio || window.devicePixelRatio || 1;
+            const cssScale = cssWidth / baseViewport.width;
+            const renderViewport = page.getViewport({ scale: cssScale * effectivePixelRatio });
+            const cssHeight = renderViewport.height / effectivePixelRatio;
+
+            canvasElement.width = renderViewport.width;
+            canvasElement.height = renderViewport.height;
+            canvasElement.style.width = '100%';
+            canvasElement.style.height = `${cssHeight}px`;
+
+            const context = canvasElement.getContext('2d');
+            context.setTransform(1, 0, 0, 1, 0, 0);
+            context.clearRect(0, 0, canvasElement.width, canvasElement.height);
+
+            await page.render({
+                canvasContext: context,
+                viewport: renderViewport
+            }).promise;
+        }
+
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            if (pdfDocuments.length > 0) {
+                clearTimeout(resizeTimer);
+                if (!isRendering) {
+                    resizeTimer = setTimeout(() => {
+                        renderAllPdfs().catch(error => console.error('Resize render failed:', error));
+                    }, 250);
+                }
+            }
+        });
+    </script>
 </body>
 </html>
 
