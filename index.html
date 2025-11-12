@@ -210,6 +210,10 @@
             [255, 128, 0],
             [128, 0, 128]
         ];
+        const PRELOAD_DOCS = [
+            { url: './scan.pdf', version: 1, name: 'scan.pdf' },
+            { url: './scan 2.pdf', version: 2, name: 'scan 2.pdf' }
+        ];
 
         let pdfDocuments = [];
         let isRendering = false;
@@ -245,6 +249,13 @@
                 versionTagInput.disabled = false;
             }
         }, 1000);
+
+        preloadPdfs().catch(error => {
+            console.error('Preload failed:', error);
+            pdfAddMessage.textContent = `Preload failed: ${error.message}`;
+            loader.classList.add('hidden');
+            placeholder.classList.remove('hidden');
+        });
 
         function updateOverlayOpacity(event) {
             const value = event.target.value;
@@ -508,6 +519,82 @@
                 reader.onerror = e => reject(e.target.error);
                 reader.readAsArrayBuffer(file);
             });
+        }
+
+        async function preloadPdfs() {
+            if (!Array.isArray(PRELOAD_DOCS) || PRELOAD_DOCS.length === 0) {
+                return;
+            }
+
+            loader.classList.remove('hidden');
+            placeholder.classList.add('hidden');
+
+            let loadedDocs = 0;
+
+            for (const config of PRELOAD_DOCS) {
+                if (!config || typeof config.version !== 'number') {
+                    continue;
+                }
+
+                if (pdfDocuments.some(doc => doc.version === config.version)) {
+                    continue;
+                }
+
+                try {
+                    const response = await fetch(config.url);
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}`);
+                    }
+
+                    const arrayBuffer = await response.arrayBuffer();
+                    const pdfDoc = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+                    if (pdfDoc.numPages < 1) {
+                        throw new Error('PDF must contain at least one page.');
+                    }
+
+                    const fileName = typeof config.name === 'string' && config.name.trim().length
+                        ? config.name.trim()
+                        : (config.url.split('/').pop() || `document-${config.version}.pdf`);
+
+                    let fileLike;
+                    try {
+                        const blob = new Blob([arrayBuffer], { type: 'application/pdf' });
+                        fileLike = new File([blob], fileName, { type: 'application/pdf' });
+                    } catch (error) {
+                        console.warn('Unable to create File instance, falling back to object.', error);
+                        fileLike = { name: fileName };
+                    }
+
+                    pdfDocuments.push({
+                        id: `pdf-preloaded-${config.version}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+                        file: fileLike,
+                        pdfDoc,
+                        version: config.version,
+                        color: null,
+                        isVisible: true
+                    });
+
+                    loadedDocs += 1;
+                } catch (error) {
+                    console.error(`Failed to preload PDF from ${config.url}:`, error);
+                    pdfAddMessage.textContent = `Failed to preload ${config.url}: ${error.message}`;
+                }
+            }
+
+            if (loadedDocs === 0) {
+                loader.classList.add('hidden');
+                placeholder.classList.remove('hidden');
+                return;
+            }
+
+            sortDocuments();
+            assignColorsByOrder();
+            markLatestVisible();
+            updatePdfListUI();
+            await renderAllPdfs();
+
+            loader.classList.add('hidden');
+            pdfAddMessage.textContent = `Preloaded ${loadedDocs} PDF${loadedDocs > 1 ? 's' : ''}. Ready for additional uploads.`;
         }
 
         async function renderAllPdfs() {
